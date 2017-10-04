@@ -1,30 +1,32 @@
-<md-card *ngFor="let book of books">
-  <md-card-header>
-    <md-card-title>{{ book.volumeInfo.title }}</md-card-title>
-    <md-card-subtitle>{{ book.volumeInfo.authors?.join(', ') }}</md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
-    <p>
-      {{ book.volumeInfo.description }}
-    </p>
-  </md-card-content>
-  <md-card-actions *ngIf="shelvedBooks">
+<ng-template ngFor let-book [ngForOf]="books">
+  <md-card *ngIf="book">
+    <md-card-header>
+      <md-card-title>{{ book.volumeInfo.title }}</md-card-title>
+      <md-card-subtitle>{{ book.volumeInfo.authors?.join(', ') }}</md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+      <p>
+        {{ book.volumeInfo.description }}
+      </p>
+    </md-card-content>
+    <md-card-actions *ngIf="shelvedBooks">
 
-    <button
-      *ngIf="!shelvedBooks[book.id]"
-      md-button
-      (click)="addToShelf(book)"
-    >
-      ADD TO SHELF
-    </button>
+      <button
+        *ngIf="!shelvedBooks[book.id]"
+        md-button
+        (click)="addToShelf(book)"
+      >
+        ADD TO SHELF
+      </button>
 
-    <button
-      *ngIf="shelvedBooks[book.id]"
-      md-button
-      (click)="removeFromShelf(book)"
-    >
-      REMOVE FROM SHELF
-    </button>
+      <button
+        *ngIf="shelvedBooks[book.id]"
+        md-button
+        (click)="removeFromShelf(book)"
+      >
+        REMOVE FROM SHELF
+      </button>
 
-  </md-card-actions>
-</md-card>
+    </md-card-actions>
+  </md-card>
+</ng-template>

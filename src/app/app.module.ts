@@ -11,6 +11,13 @@ import {EffectsModule} from '@ngrx/effects';
 import {BookEffects} from './books/book.effects';
 import {shelfReducer} from './shelf/shelf.reducers';
 import {localStorageSync} from 'ngrx-store-localstorage';
+import {routerReducer, RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {RouterModule} from '@angular/router';
+import {SharedModule} from './shared/shared.module';
+import {ShelfModule} from './shelf/shelf.module';
+import {BookPageComponent} from './books/book-page/book-page.component';
+import {ShelfPageComponent} from './shelf/shelf-page/shelf-page.component';
+import {CustomRouteStateSerializer} from './app.reducers';
 
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
@@ -28,8 +35,16 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    SharedModule,
     BooksModule,
+    ShelfModule,
+    RouterModule.forRoot([
+      // { path: '', redirectTo: 'books', pathMatch: 'full' },
+      // { path: 'books', component: BookPageComponent },
+      // { path: 'shelf', component: ShelfPageComponent },
+    ]),
     StoreModule.forRoot({
+      // router: routerReducer,
       books: bookReducer,
       shelf: shelfReducer
     }, {
@@ -38,11 +53,15 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     EffectsModule.forRoot([
       BookEffects
     ]),
+    // StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
-    })
+    }),
+
   ],
-  providers: [],
+  providers: [
+    // { provide: RouterStateSerializer, useClass: CustomRouteStateSerializer }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

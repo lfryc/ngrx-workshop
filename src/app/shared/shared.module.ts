@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MdButtonModule,
-  MdCardModule, MdInputModule, MdProgressSpinnerModule,
+  MdCardModule, MdInputModule, MdProgressSpinnerModule, MdSidenavModule,
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -17,6 +17,7 @@ import {BookListComponent} from './book-list/book-list.component';
     MdButtonModule,
     MdProgressSpinnerModule,
     MdCardModule,
+    MdSidenavModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -24,6 +25,8 @@ import {BookListComponent} from './book-list/book-list.component';
     MdButtonModule,
     MdProgressSpinnerModule,
     MdCardModule,
+    MdSidenavModule,
+
     BookListComponent,
   ],
   declarations: [
