@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, OnDestroy} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {BookSearchService} from '../book-search.service';
 import {DataSource} from '@angular/cdk/collections';
@@ -8,6 +8,7 @@ import {AppState} from '../../app-state';
 import {Store} from '@ngrx/store';
 import {getBookSearchResults} from '../book.reducers';
 import {BookSearch, BookSearchResult} from '../book.actions';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'a-book-page',

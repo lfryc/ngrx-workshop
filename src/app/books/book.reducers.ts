@@ -17,10 +17,9 @@ export function bookReducer(state = initialState, action: BookAction): BooksStat
   switch (action.type) {
 
     case BOOK_SEARCH:
-      console.log(`Querying ${action.payload}`);
       return {
         ...state,
-        searchInProgress: true,
+        searchInProgress: action.payload.queryTitle.length > 0,
       };
 
     case BOOK_SEARCH_RESULT:

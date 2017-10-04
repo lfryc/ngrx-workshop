@@ -7,6 +7,8 @@ import {BooksModule} from './books/books.module';
 import {StoreModule} from '@ngrx/store';
 import {bookReducer} from './books/book.reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {EffectsModule} from '@ngrx/effects';
+import {BookEffects} from './books/book.effects';
 
 @NgModule({
   declarations: [
