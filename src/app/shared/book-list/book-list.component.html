@@ -8,4 +8,17 @@
       {{ book.volumeInfo.description }}
     </p>
   </md-card-content>
+  <md-card-actions *ngIf="shelvedBooks">
+
+    <button
+    >
+      ADD TO SHELF
+    </button>
+
+    <button
+    >
+      REMOVE FROM SHELF
+    </button>
+
+  </md-card-actions>
 </md-card>

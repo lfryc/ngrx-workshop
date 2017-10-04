@@ -3,6 +3,7 @@ import {Book} from '../book';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../app-state';
 import {getBookSearchInProgress, getBookSearchResults} from '../book.reducers';
+import {getShelvedBooks} from '../../shelf/shelf.reducers';
 
 @Component({
   selector: 'a-book-search-results',

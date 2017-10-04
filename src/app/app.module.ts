@@ -9,6 +9,7 @@ import {bookReducer} from './books/book.reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {BookEffects} from './books/book.effects';
+import {shelfReducer} from './shelf/shelf.reducers';
 
 @NgModule({
   declarations: [
