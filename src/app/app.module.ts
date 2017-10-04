@@ -20,7 +20,8 @@ import {shelfReducer} from './shelf/shelf.reducers';
     BrowserAnimationsModule,
     BooksModule,
     StoreModule.forRoot({
-      books: bookReducer
+      books: bookReducer,
+      shelf: shelfReducer
     }),
     EffectsModule.forRoot([
       BookEffects

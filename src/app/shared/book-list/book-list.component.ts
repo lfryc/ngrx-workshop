@@ -13,10 +13,21 @@ import {ShelfAddBook, ShelfRemoveBook} from '../../shelf/shelf.actions';
 export class BookListComponent implements OnInit {
 
   @Input() books: Book[];
+  @Input() shelvedBooks: { [id: string]: Book };
 
-  constructor() { }
+  constructor(
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit() {
+  }
+
+  addToShelf(book: Book) {
+    this.store.dispatch(new ShelfAddBook(book));
+  }
+
+  removeFromShelf(book: Book) {
+    this.store.dispatch(new ShelfRemoveBook(book));
   }
 
 }

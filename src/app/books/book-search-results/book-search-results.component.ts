@@ -15,6 +15,7 @@ export class BookSearchResultsComponent implements OnInit {
 
   loading = this.store.select(getBookSearchInProgress);
   searchResults = this.store.select(getBookSearchResults);
+  shelvedBooks = this.store.select(getShelvedBooks);
 
   constructor(
     private store: Store<AppState>

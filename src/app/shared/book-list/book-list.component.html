@@ -11,11 +11,17 @@
   <md-card-actions *ngIf="shelvedBooks">
 
     <button
+      *ngIf="!shelvedBooks[book.id]"
+      md-button
+      (click)="addToShelf(book)"
     >
       ADD TO SHELF
     </button>
 
     <button
+      *ngIf="shelvedBooks[book.id]"
+      md-button
+      (click)="removeFromShelf(book)"
     >
       REMOVE FROM SHELF
     </button>
