@@ -1,5 +1,8 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 import {Book} from '../book';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../app-state';
+import {getBookSearchInProgress, getBookSearchResults} from '../book.reducers';
 
 @Component({
   selector: 'a-book-search-results',

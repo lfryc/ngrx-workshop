@@ -4,6 +4,10 @@ import {BookSearchService} from '../book-search.service';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Book} from '../book';
+import {AppState} from '../../app-state';
+import {Store} from '@ngrx/store';
+import {getBookSearchResults} from '../book.reducers';
+import {BookSearch, BookSearchResult} from '../book.actions';
 
 @Component({
   selector: 'a-book-page',
