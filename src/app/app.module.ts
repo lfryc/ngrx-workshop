@@ -21,6 +21,9 @@ import {BookEffects} from './books/book.effects';
     StoreModule.forRoot({
       books: bookReducer
     }),
+    EffectsModule.forRoot([
+      BookEffects
+    ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
     })

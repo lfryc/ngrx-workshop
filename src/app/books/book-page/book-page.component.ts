@@ -16,29 +16,27 @@ import {Subscription} from 'rxjs/Subscription';
   styleUrls: ['./book-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookPageComponent implements OnInit {
+export class BookPageComponent implements OnInit, OnDestroy {
 
   queryTitleFormControl = new FormControl();
 
+  subscriptions: Subscription[];
+
   constructor(
-    private bookSearch: BookSearchService,
     private store: Store<AppState>
   ) {}
 
   ngOnInit() {
-    this.queryTitleFormControl.valueChanges
-      .debounceTime(500)
-      .filter((query: string) => query.length > 2)
-      .distinctUntilChanged()
-      .do((query) => {
-        this.store.dispatch(new BookSearch(query));
-      })
-      .switchMap((query) => {
-        return this.bookSearch.searchForBooks(query);
-      })
-      .subscribe((books) => {
-        this.store.dispatch(new BookSearchResult(books));
-      });
+    this.subscriptions = [
+      this.queryTitleFormControl.valueChanges
+        .subscribe((queryTitle) => {
+          this.store.dispatch(new BookSearch({ queryTitle }));
+        })
+    ];
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
 }
