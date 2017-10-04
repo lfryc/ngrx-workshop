@@ -12,10 +12,12 @@ import {getBookSearchInProgress, getBookSearchResults} from '../book.reducers';
 })
 export class BookSearchResultsComponent implements OnInit {
 
-  @Input() loading: boolean;
-  @Input() searchResults: Book[];
+  loading = this.store.select(getBookSearchInProgress);
+  searchResults = this.store.select(getBookSearchResults);
 
-  constructor() { }
+  constructor(
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit() {
   }

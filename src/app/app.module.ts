@@ -16,6 +16,12 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     BrowserModule,
     BrowserAnimationsModule,
     BooksModule,
+    StoreModule.forRoot({
+      books: bookReducer
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25 //  Retains last 25 states
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

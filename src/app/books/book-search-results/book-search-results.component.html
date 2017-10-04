@@ -1,5 +1,5 @@
-<md-spinner *ngIf="loading"></md-spinner>
+<md-spinner *ngIf="loading | async"></md-spinner>
 
-<div [hidden]="loading">
-  <a-book-list [books]="searchResults"></a-book-list>
+<div [hidden]="loading | async">
+  <a-book-list [books]="searchResults | async"></a-book-list>
 </div>

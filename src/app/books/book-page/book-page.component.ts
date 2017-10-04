@@ -19,30 +19,25 @@ export class BookPageComponent implements OnInit {
 
   queryTitleFormControl = new FormControl();
 
-  fetchingBooks$ = new BehaviorSubject<boolean>(false);
-
-  queryResults$ = this.queryTitleFormControl.valueChanges
-    .debounceTime(500)
-    .filter((query: string) => query.length > 2)
-    .distinctUntilChanged()
-    .do((query) => {
-      console.log(`Querying ${query}`);
-      this.fetchingBooks$.next(true);
-    })
-    .switchMap((query) => {
-      return this.bookSearch.searchForBooks(query);
-    })
-    .do((books) => {
-      this.fetchingBooks$.next(false);
-    })
-    .share();
-
   constructor(
-    private bookSearch: BookSearchService
+    private bookSearch: BookSearchService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
-
+    this.queryTitleFormControl.valueChanges
+      .debounceTime(500)
+      .filter((query: string) => query.length > 2)
+      .distinctUntilChanged()
+      .do((query) => {
+        this.store.dispatch(new BookSearch(query));
+      })
+      .switchMap((query) => {
+        return this.bookSearch.searchForBooks(query);
+      })
+      .subscribe((books) => {
+        this.store.dispatch(new BookSearchResult(books));
+      });
   }
 
 }

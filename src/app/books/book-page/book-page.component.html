@@ -2,7 +2,4 @@
   <input mdInput placeholder="Search for title" [formControl]="queryTitleFormControl">
 </md-form-field>
 
-<a-book-search-results
-  [searchResults]="queryResults$ | async"
-  [loading]="fetchingBooks$ | async"
-></a-book-search-results>
+<a-book-search-results></a-book-search-results>
