@@ -13,11 +13,13 @@ import {shelfReducer} from './shelf/shelf.reducers';
 import {localStorageSync} from 'ngrx-store-localstorage';
 
 
-// export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-//   return localStorageSync({
-//   })(reducer);
-// }
-// const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({
+    keys: ['shelf'],
+    rehydrate: true,
+  })(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import {localStorageSync} from 'ngrx-store-localstorage';
     StoreModule.forRoot({
       books: bookReducer,
       shelf: shelfReducer
+    }, {
+      metaReducers
     }),
     EffectsModule.forRoot([
       BookEffects
