@@ -4,12 +4,20 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BooksModule} from './books/books.module';
-import {StoreModule} from '@ngrx/store';
+import {ActionReducer, MetaReducer, StoreModule} from '@ngrx/store';
 import {bookReducer} from './books/book.reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {BookEffects} from './books/book.effects';
 import {shelfReducer} from './shelf/shelf.reducers';
+import {localStorageSync} from 'ngrx-store-localstorage';
+
+
+// export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+//   return localStorageSync({
+//   })(reducer);
+// }
+// const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [
