@@ -1,0 +1,5 @@
+<md-spinner *ngIf="loading"></md-spinner>
+
+<div [hidden]="loading">
+  <a-book-list [books]="searchResults"></a-book-list>
+</div>

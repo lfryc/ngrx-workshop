@@ -9,6 +9,9 @@ import {Book} from '../book';
 })
 export class BookSearchResultsComponent implements OnInit {
 
+  @Input() loading: boolean;
+  @Input() searchResults: Book[];
+
   constructor() { }
 
   ngOnInit() {

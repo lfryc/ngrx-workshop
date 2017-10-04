@@ -9,6 +9,8 @@ import {Book} from '../../books/book';
 })
 export class BookListComponent implements OnInit {
 
+  @Input() books: Book[];
+
   constructor() { }
 
   ngOnInit() {
