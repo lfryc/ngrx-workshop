@@ -10,8 +10,12 @@ export class BookSearchService {
   private API_PATH = 'https://www.googleapis.com/books/v1/volumes';
 
   constructor(
+    private http: HttpClient
   ) {}
 
   searchForBooks(queryTitle: string): Observable<Book[]> {
+    return this.http
+      .get(`${this.API_PATH}?q=${queryTitle}`)
+      .map((res: any) => res.items || []);
   }
 }

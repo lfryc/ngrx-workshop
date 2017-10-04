@@ -13,7 +13,28 @@ import {Book} from '../book';
 })
 export class BookPageComponent implements OnInit {
 
+  queryTitleFormControl = new FormControl();
+
+  fetchingBooks$ = new BehaviorSubject<boolean>(false);
+
+  queryResults$ = this.queryTitleFormControl.valueChanges
+    .debounceTime(500)
+    .filter((query: string) => query.length > 2)
+    .distinctUntilChanged()
+    .do((query) => {
+      console.log(`Querying ${query}`);
+      this.fetchingBooks$.next(true);
+    })
+    .switchMap((query) => {
+      return this.bookSearch.searchForBooks(query);
+    })
+    .do((books) => {
+      this.fetchingBooks$.next(false);
+    })
+    .share();
+
   constructor(
+    private bookSearch: BookSearchService
   ) {}
 
   ngOnInit() {
