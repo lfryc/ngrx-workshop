@@ -11,7 +11,10 @@ import {getShelvedBooks} from '../shelf.reducers';
 })
 export class ShelfPageComponent implements OnInit {
 
+  shelvedBooks = this.store.select(getShelvedBooks);
+
   constructor(
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {

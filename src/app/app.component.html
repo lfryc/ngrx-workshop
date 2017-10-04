@@ -1,12 +1,10 @@
-<!--
 <md-sidenav-container>
   <md-sidenav mode="side" opened="true" disableClose>
-    <a md-button routerLink="/books">Books</a>
-    <a md-button routerLink="/shelf">Shelf</a>
+    <a md-button routerLink="/books" [color]="(url$ | async) === '/books' ? 'primary' : null">Books</a>
+    <a md-button routerLink="/shelf" [color]="(url$ | async) === '/shelf' ? 'primary' : null">Shelf</a>
   </md-sidenav>
 
   <main>
--->
     <div style="text-align:center">
       <h1>
         Welcome to @ngrx workshop
@@ -14,8 +12,6 @@
       <img width="300" src="/assets/rxjs-angular-logos.png">
     </div>
 
-<!--
     <router-outlet></router-outlet>
   </main>
 </md-sidenav-container>
--->

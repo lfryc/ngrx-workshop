@@ -39,12 +39,12 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     BooksModule,
     ShelfModule,
     RouterModule.forRoot([
-      // { path: '', redirectTo: 'books', pathMatch: 'full' },
-      // { path: 'books', component: BookPageComponent },
-      // { path: 'shelf', component: ShelfPageComponent },
+      { path: '', redirectTo: 'books', pathMatch: 'full' },
+      { path: 'books', component: BookPageComponent },
+      { path: 'shelf', component: ShelfPageComponent },
     ]),
     StoreModule.forRoot({
-      // router: routerReducer,
+      router: routerReducer,
       books: bookReducer,
       shelf: shelfReducer
     }, {
@@ -53,14 +53,14 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     EffectsModule.forRoot([
       BookEffects
     ]),
-    // StoreRouterConnectingModule,
+    StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
     }),
 
   ],
   providers: [
-    // { provide: RouterStateSerializer, useClass: CustomRouteStateSerializer }
+    { provide: RouterStateSerializer, useClass: CustomRouteStateSerializer }
   ],
   bootstrap: [AppComponent]
 })

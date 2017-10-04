@@ -1,0 +1,7 @@
+
+<p *ngIf="(shelvedBooks | async | booksFromShelf)?.length === 0">No shelved books</p>
+
+<a-book-list
+  [books]="shelvedBooks | async | booksFromShelf"
+  [shelvedBooks]="shelvedBooks | async"
+></a-book-list>

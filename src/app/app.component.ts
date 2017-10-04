@@ -9,4 +9,11 @@ import {selectRouterUrl} from './app.reducers';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  url$ = this.store.select(selectRouterUrl);
+
+  constructor(
+    private store: Store<AppState>
+  ) {}
+
 }

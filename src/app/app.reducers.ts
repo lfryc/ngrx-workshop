@@ -16,3 +16,5 @@ export class CustomRouteStateSerializer implements RouterStateSerializer<RouterS
   }
 }
 
+export const selectRouterState = (state: AppState) => (state.router ? state.router.state : null);
+export const selectRouterUrl = createSelector(selectRouterState, (routerState) => routerState ? routerState.url : null);
